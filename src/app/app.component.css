@@ -1,3 +1,7 @@
+h1.display-4 {
+    font-size: 2rem;
+}
+
 .calc-wrapper {
     max-width: 300px;
     margin: auto;
@@ -9,11 +13,16 @@
     border: 1px solid #eee;
 }
 .calc-screen .calc-full {
-    height: 1.5em;
+    text-align: right;
+    height: 2rem;
+    padding: .375rem .75rem;
     background: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .calc-screen .calc-screen-input {
-    font-size: 2em;
+    font-size: 1.4em;
 }
 .calc-screen input {
     outline: 0;

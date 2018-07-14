@@ -10,11 +10,12 @@ export class AppComponent {
   num1: number;
   num2: number;
 
-  previousNum: number = 0;
   currentNum: number = 0;
   currentInput: string = '0';
-  operation: string = '+';
+  operation: string = '';
   result: number = 0;
+  log: string = '';
+  isLastInputOperation: boolean = false;
 
   countDecimals(a: number): number {
     if (Math.floor(a) === a) return 0;
@@ -37,50 +38,85 @@ export class AppComponent {
   }
 
   allClear() {
-    this.previousNum = 0;
     this.currentNum = 0;
     this.currentInput = '0';
-    this.operation = '+';
+    this.operation = '';
     this.result = 0;
+    this.log = '';
+    this.isLastInputOperation = false;
+  }
+  insertDot() {
+    this.currentInput = this.currentNum.toString();
+    if (this.currentInput.indexOf('.') === -1) {
+      this.currentInput += '.';
+    }
+    this.isLastInputOperation = false;
   }
   getInput(event: any) {
     //console.log(isNaN(event.target.value)+' '+Number.isNaN(event.target.value));
-    if (event.target.value === '.' && this.currentInput.indexOf('.') !== -1) {
-      return;
-    }
-    if (this.currentInput === '0' || this.result !== 0) {
-      this.result = 0;
-      this.currentInput = (event.target.value === '.') ? '0' + event.target.value : event.target.value; 
-    } else {
+    if (this.currentNum !== 0 || (Number.parseFloat(this.currentInput) === 0 && this.currentInput.indexOf('.') !== -1)) {
       this.currentInput += event.target.value;
+    } else {
+      this.currentInput = event.target.value;
     }
     this.currentNum = Number.parseFloat(this.currentInput);
-    console.log(this.currentInput+' '+this.currentNum);
+    //console.log(this.currentInput+' '+this.currentNum);
+    this.isLastInputOperation = false;
+  }
+  clearInput() {
+    if (!this.isLastInputOperation) {
+      this.currentInput = (this.currentInput.length > 1) ? this.currentInput.slice(0, -1) : '0';
+      this.currentNum = Number.parseFloat(this.currentInput);
+    }
+  }
+  toggleSign() {
+    if (this.currentNum !== 0) {
+      this.currentNum *= -1;
+      this.currentInput = this.currentNum.toString();
+    }
+  }
+  calculate() {
+    if (!this.isLastInputOperation) {
+      this.num1 = this.result;
+      this.num2 = this.currentNum;
+      switch (this.operation) {
+        case '+':
+          this.add();
+          break;
+        case '-':
+          this.substract();
+          break;
+        case 'X':
+          this.multiply();
+          break;
+        case '/':
+          this.divide();
+          break;
+        default:
+          this.result = Number.parseFloat(this.currentInput);
+      }
+      let result = Number.parseFloat(this.result.toPrecision(12));
+      //this.currentInput = (Number.isInteger(this.result)) ? this.result.toString() : this.result.toPrecision(12);
+      if (this.countDecimals(result) > 11) {
+        this.currentInput = result.toFixed(11);
+      } else {
+        this.currentInput = result.toString();
+      }
+      this.currentNum = 0;
+      console.log(this.currentInput+' '+this.result);
+    }
+    this.isLastInputOperation = true;
   }
   doOperation(event: any) {
-    this.getResult();
-    this.previousNum = this.result;
-    this.currentInput = '0';
+    this.log += (this.currentNum >= 0) ? this.currentInput : '('+this.currentInput+')';
+    this.calculate();
     this.operation = event.target.value;
+    this.log += ' ' + this.operation + ' ';
   }
   getResult() {
-    this.num1 = this.previousNum;
-    this.num2 = this.currentNum;
-    switch (this.operation) {
-      case '+':
-        this.add();
-        break;
-      case '-':
-        this.substract();
-        break;
-      case 'X':
-        this.multiply();
-        break;
-      case '/':
-        this.divide();
-        break;
-    }
-    this.currentInput = this.result.toString();
+    this.calculate();
+    this.operation = '';
+    this.log = '';
   }
 
 }
