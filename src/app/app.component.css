@@ -1,5 +1,6 @@
 .calc-wrapper {
     max-width: 300px;
+    margin: auto;
     border: 1px solid #eee;
     background: #f9f9f9;
 }
