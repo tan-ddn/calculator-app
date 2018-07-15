@@ -17,7 +17,7 @@ export class AppComponent implements AfterViewInit {
   constructor (private elementRef: ElementRef, private logicService: LogicService) {}
 
   ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.fontSize = '18px';
+    this.elementRef.nativeElement.ownerDocument.body.style.fontSize = '17px';
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#eee';
   }
 

@@ -4,11 +4,11 @@ h1.display-4 {
 
 .btn {
     font-size: 1.25em;
-    padding: .375em .75em;
+    padding: .55em .75em;
 }
 
 .calc-wrapper {
-    max-width: 360px;
+    max-width: 330px;
     margin: auto;
     border: 1px solid #eee;
     background: #f9f9f9;
