@@ -31,16 +31,17 @@ h1.display-4 {
 .calc-screen input[type=number]::-webkit-inner-spin-button, 
 .calc-screen input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
+  appearance: none;
   margin: 0; 
 }
 
 .calc-operation-group .btn {
     flex-grow: 1;
-    flex-basis: calc(25% - 2px);
+    width: calc(25% - 2px);
     margin: 1px;
 }
 .calc-numbers-group .btn {
     flex-grow: 1;
-    flex-basis: calc(33.333% - 2px);
+    width: calc(33.333% - 2px);
     margin: 1px;
 }
