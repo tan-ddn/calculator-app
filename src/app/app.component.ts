@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 import { LogicService } from './logic.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { LogicService } from './logic.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'Calculator App';
 
   readonly operators: string[] = ['+', '-', 'X', '/', '='];
@@ -14,7 +14,11 @@ export class AppComponent {
   lastInput: string = '';
   log: string = '';
 
-  constructor (private logicService: LogicService) {}
+  constructor (private elementRef: ElementRef, private logicService: LogicService) {}
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#eee';
+  }
 
   allClear() {
     this.logicService.allClear();
