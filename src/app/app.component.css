@@ -1,9 +1,14 @@
 h1.display-4 {
-    font-size: 2rem;
+    font-size: 2em;
+}
+
+.btn {
+    font-size: 1.25em;
+    padding: .375em .75em;
 }
 
 .calc-wrapper {
-    max-width: 300px;
+    max-width: 360px;
     margin: auto;
     border: 1px solid #eee;
     background: #f9f9f9;
@@ -14,15 +19,15 @@ h1.display-4 {
 }
 .calc-screen .calc-full {
     text-align: right;
-    height: 2rem;
-    padding: .375rem .75rem;
+    height: 2em;
+    padding: .375em .75em;
     background: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .calc-screen .calc-screen-input {
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 .calc-screen input {
     outline: 0;
