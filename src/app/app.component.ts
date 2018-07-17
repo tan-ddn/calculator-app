@@ -56,7 +56,7 @@ export class AppComponent implements AfterViewInit {
     } else {
       eventValue = event.target.value;
     }
-    return eventValue;
+    return (eventValue === 'Enter') ? '=' : eventValue;
   }
 
   //Add commas when number grows to thousand and beyond
