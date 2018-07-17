@@ -21,6 +21,14 @@ export class AppComponent implements AfterViewInit {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#eee';
   }
 
+  //Add commas when number grows to thousand and beyond
+  easyReadFormat(number: number): string {
+    let numberString = number.toString();
+    console.log(numberString);
+    let beforeDecimal: string = numberString.split('.')[0];
+    return (beforeDecimal.length > 11 || number < 1e-11 || numberString.indexOf('e') !== -1) ? number.toExponential(11) : number.toLocaleString(undefined, {maximumFractionDigits: 11});
+  }
+
   allClear() {
     this.logicService.allClear();
     
@@ -42,11 +50,18 @@ export class AppComponent implements AfterViewInit {
 
   getInput(event: any) {
     if ((!this.isLastInputOperator() && this.lastInput !== '' && this.currentDisplayNum !== '0') ) {
-      this.currentDisplayNum += event.target.value;
+      if (this.currentDisplayNum.indexOf('e') === -1) {
+        this.currentDisplayNum += event.target.value;
+      } else {
+        let inputNumber = Number.parseFloat(event.target.value);
+        let currentNumber: number = Number.parseFloat(this.currentDisplayNum) * 10 + inputNumber;
+        this.currentDisplayNum = currentNumber.toString();
+      }
     } else {
       this.currentDisplayNum = event.target.value;
     }
     this.logicService.setCurrentNum(this.currentDisplayNum);
+    this.currentDisplayNum = this.easyReadFormat(this.logicService.getCurrentNum());
     this.lastInput = event.target.value;
   }
 
@@ -59,19 +74,19 @@ export class AppComponent implements AfterViewInit {
   }
 
   toggleSign() {
-    this.currentDisplayNum = this.logicService.toggleSign(this.currentDisplayNum);
+    this.currentDisplayNum = this.easyReadFormat(this.logicService.toggleSign(this.currentDisplayNum));
     this.lastInput = 'T';
   }
 
   doOperation(event: any) {
     this.logOperationBegin();
-    this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator());
+    this.currentDisplayNum = this.easyReadFormat(this.logicService.calculate(this.isLastInputOperator()));
     this.lastInput = this.logicService.finishOperation(event.target.value);
     this.logOperationEnd();
   }
 
   getResult() {
-    this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator());
+    this.currentDisplayNum = this.easyReadFormat(this.logicService.calculate(this.isLastInputOperator()));
     this.lastInput = this.logicService.finishAll();
     this.log = '';
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NUMBER_FORMAT_REGEXP } from '@angular/common/src/i18n/format_number';
 
 @Injectable({
   providedIn: 'root'
@@ -45,18 +46,22 @@ export class LogicService {
   }
 
   setCurrentNum(val: string) {
-    this.currentNum = Number.parseFloat(val);
+    this.currentNum = Number.parseFloat(val.replace(/,/g , ''));
   }
 
-  toggleSign(val: string): string {
+  getCurrentNum(): number {
+    return this.currentNum;
+  }
+
+  toggleSign(val: string): number {
     this.currentNum = Number.parseFloat(val);
     if (this.currentNum !== 0) {
       this.currentNum *= -1;
     }
-    return this.currentNum.toString();
+    return this.currentNum;
   }
 
-  calculate(isLastInputOperator: boolean): string {
+  calculate(isLastInputOperator: boolean): number {
     if (!isLastInputOperator) {
       let a: number = this.result;
       let b: number = this.currentNum;
@@ -76,12 +81,12 @@ export class LogicService {
         default:
           this.result = this.currentNum;
       }
-      this.result = Number.parseFloat(this.result.toPrecision(12));
+      //this.result = Number.parseFloat(this.result.toPrecision(12));
       console.log(this.operation + ' ' + this.currentNum);
       this.currentNum = 0;
       console.log(this.result.toString() + ' | ' + this.result);
     }
-    return this.result.toString();
+    return this.result;
   }
 
   finishOperation(val: string): string {
