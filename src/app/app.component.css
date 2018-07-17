@@ -17,7 +17,7 @@ h1.display-4 {
 .calc-screen {
     border: 1px solid #eee;
 }
-.calc-screen .calc-full {
+.calc-screen .calc-log {
     text-align: right;
     height: 2em;
     padding: .375em .75em;
@@ -29,6 +29,13 @@ h1.display-4 {
 .calc-screen .calc-screen-input {
     font-size: 1.6em;
 }
+/*.calc-screen .calc-screen-input .calc-key-input {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 1em;
+}*/
 .calc-screen input {
     outline: 0;
     box-shadow: none;

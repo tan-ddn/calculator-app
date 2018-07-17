@@ -1,81 +1,86 @@
 <div class="app-root-wrap">
-  <div class="container">
-    <br/>
-    <div class="row">
-      <div class="col">
-        <h1 class="display-4 text-center">Welcome to<br/>{{ title }}!</h1>
+    <div class="container">
+      <br/>
+      <div class="row">
+        <div class="col">
+          <h1 class="display-4 text-center">Welcome to<br/>{{ title }}!</h1>
+        </div>
       </div>
-    </div>
-    <!--br/>
-    <div class="row">
-      <div class="col-md-6">
-        <input type="number" [(ngModel)]="num1" placeholder="Enter Number 1" class="form-control" />
+      <!--br/>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="number" [(ngModel)]="num1" placeholder="Enter Number 1" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <input type="number" [(ngModel)]="num2" placeholder="Enter Number 2" class="form-control" />
+        </div>
       </div>
-      <div class="col-md-6">
-        <input type="number" [(ngModel)]="num2" placeholder="Enter Number 2" class="form-control" />
+      <br/>
+      <div class="row text-center">
+        <div class="col-md-3">
+          <button class="btn btn-secondary" (click)='add()'>Add</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-secondary" (click)='substract()'>Substract</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-secondary" (click)='multiply()'>Multiply</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-secondary" (click)='divide()'>Divide</button>
+        </div>
       </div>
-    </div>
-    <br/>
-    <div class="row text-center">
-      <div class="col-md-3">
-        <button class="btn btn-secondary" (click)='add()'>Add</button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-secondary" (click)='substract()'>Substract</button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-secondary" (click)='multiply()'>Multiply</button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-secondary" (click)='divide()'>Divide</button>
-      </div>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-md-5 col-md-offset-4">
-        <h2>Result = {{ result }}</h2>
-      </div>
-    </div-->
-    <div class="row my-3 justify-content-center">
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="calc-wrapper shadow p-4">
-          <div class="row">
-            <div class="col-12"><div id="calc-screen" class="form-group calc-screen ">
-              <div class="calc-full">
-                <small>{{log}}</small>
-              </div>
-              <input type="text" [(ngModel)]='currentDisplayNum' class="calc-screen-input form-control text-right border-0"/>
-            </div></div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group calc-operation-group flex-wrap flex-grow-1 text-center" role="group">
-                  <button (click)='toggleSign()' class="btn btn-primary btn-lg rounded-0"><small>+/-</small></button>
-                  <button (click)='clearInput()' class="btn btn-warning btn-lg">C</button>
-                  <button (click)='allClear()' class="btn btn-danger btn-lg rounded-0">AC</button>
+      <br/>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <h2>Result = {{ result }}</h2>
+        </div>
+      </div-->
+      <div class="row my-3 justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="calc-wrapper shadow p-4">
+            <div class="row">
+              <div class="col-12"><div id="calc-screen" class="form-group calc-screen ">
+                <div class="calc-log">
+                  <small>{{log}}</small>
                 </div>
-                <div class="btn-group calc-operation-group flex-wrap flex-grow-1 text-center" role="group">
-                  <input type="button" (click)='doOperation($event)' class="btn btn-info btn-lg rounded-0" value="+" />
-                  <input type="button" (click)='doOperation($event)' class="btn btn-info btn-lg" value="-" />
-                  <input type="button" (click)='doOperation($event)' class="btn btn-info btn-lg" value="X" />
-                  <input type="button" (click)='doOperation($event)' class="btn btn-info btn-lg rounded-0" value="/" />
+                <!--input type="text" [(ngModel)]='currentDisplayNum' class="calc-screen-input form-control text-right border-0"/-->
+                <div class="calc-screen-input form-control text-right border-0">
+                  <div>{{currentDisplayNum}}</div>
+                  <!--input type="text" (keydown)="onKey($event)" class="calc-key-input form-control text-right border-0" /-->
                 </div>
-                <div class="btn-group calc-numbers-group flex-wrap flex-row-reverse text-center" role="group">
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="9" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="8" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="7" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="6" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="5" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="4" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="3" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="2" />
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="1" />
-                </div>
-                <div class="btn-group calc-numbers-group flex-wrap flex-grow-1 text-center" role="group">
-                  <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="0" />
-                  <input type="button" (click)='insertDot()' class="btn btn-secondary btn-lg" value="." />
-                  <input type="button" (click)='getResult()' class="btn btn-info btn-lg rounded-0" value="=" />
+              </div></div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="btn-toolbar" role="toolbar">
+                  <div class="btn-group calc-operation-group flex-wrap flex-grow-1 text-center" role="group">
+                    <button (click)='toggleSign()' class="btn btn-primary btn-lg rounded-0"><small>+/-</small></button>
+                    <button (click)='clearInput()' class="btn btn-warning btn-lg">C</button>
+                    <button (click)='allClear()' class="btn btn-danger btn-lg rounded-0">AC</button>
+                  </div>
+                  <div class="btn-group calc-operation-group flex-wrap flex-grow-1 text-center" role="group">
+                    <button (click)='doOperation($event)' class="btn btn-info btn-lg rounded-0" value="+">+</button>
+                    <button (click)='doOperation($event)' class="btn btn-info btn-lg" value="-">-</button>
+                    <button (click)='doOperation($event)' class="btn btn-info btn-lg" value="*">X</button>
+                    <button (click)='doOperation($event)' class="btn btn-info btn-lg rounded-0" value="/">/</button>
+                  </div>
+                  <div class="btn-group calc-numbers-group flex-wrap flex-row-reverse text-center" role="group">
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="9" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="8" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="7" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="6" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="5" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="4" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="3" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg" value="2" />
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="1" />
+                  </div>
+                  <div class="btn-group calc-numbers-group flex-wrap flex-grow-1 text-center" role="group">
+                    <input type="button" (click)='getInput($event)' class="btn btn-secondary btn-lg rounded-0" value="0" />
+                    <input type="button" (click)='insertDot()' class="btn btn-secondary btn-lg" value="." />
+                    <input type="button" (click)='getResult()' class="btn btn-info btn-lg rounded-0" value="=" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,4 +89,3 @@
       </div>
     </div>
   </div>
-</div>
