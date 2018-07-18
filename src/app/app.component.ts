@@ -24,10 +24,11 @@ export class AppComponent implements AfterViewInit {
   }
 
   //Listen to keyboard event
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    this.keyIn = event.key;
-    if (isNaN(this.keyIn)) {
+    //console.log(event);
+    this.keyIn = event.key; 
+    if (isNaN(this.keyIn) || this.keyIn === ' ') {
       switch (this.keyIn) {
         case '+':
         case '-':
@@ -35,12 +36,19 @@ export class AppComponent implements AfterViewInit {
         case '/':
           this.doOperation(event);
           break;
+        case ' ':
         case '=':
         case 'Enter':
           this.getResult();
           break;
         case '.':
           this.insertDot();
+          break;
+        case 'Backspace':
+          this.clearInput();
+          break;
+        case 'Escape':
+          this.allClear();
           break;
       }
     } else {
@@ -93,7 +101,7 @@ export class AppComponent implements AfterViewInit {
   //Update logic service's currentNum and reformat currentDisplayNum
   updateCurrentNum() {
     this.logicService.setCurrentNum(this.currentDisplayNum);
-    if (this.logicService.getCurrentNum() !== 0 || this.currentDisplayNum === '0') this.currentDisplayNum = this.toEasyReadFormat(this.logicService.getCurrentNum());
+    if (this.currentDisplayNum.indexOf('.') === -1) this.currentDisplayNum = this.toEasyReadFormat(this.logicService.getCurrentNum());456
   }
 
   //Get number input

@@ -1,14 +1,9 @@
 h1.display-4 {
-    font-size: 2em;
-}
-
-.btn {
-    font-size: 1.25em;
-    padding: .55em .75em;
+    font-size: 2rem;
 }
 
 .calc-wrapper {
-    max-width: 330px;
+    max-width: 360px;
     margin: auto;
     border: 1px solid #eee;
     background: #f9f9f9;
@@ -19,22 +14,23 @@ h1.display-4 {
 }
 .calc-screen .calc-log {
     text-align: right;
-    height: 2em;
-    padding: .375em .75em;
+    height: 2rem;
+    padding: .3rem .8rem;
     background: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .calc-screen .calc-screen-input {
-    font-size: 1.6em;
+    font-size: 2rem;
+    padding: .3rem .8rem;
 }
 /*.calc-screen .calc-screen-input .calc-key-input {
     visibility: hidden;
     position: absolute;
     left: 0;
     bottom: 0;
-    font-size: 1em;
+    font-size: 1rem;
 }*/
 .calc-screen input {
     outline: 0;
@@ -47,6 +43,11 @@ h1.display-4 {
   margin: 0; 
 }
 
+.btn-toolbar .btn {
+    font-size: 1.6rem;
+    padding: .8rem .8rem;
+    border-radius: .3rem;
+}
 .calc-operation-group .btn {
     flex-grow: 1;
     width: calc(25% - 2px);
