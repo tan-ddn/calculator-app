@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ElementRef, HostListener } from '@angular/core';
 import { LogicService } from './logic.service';
+import { EasyReadPipe } from './easyread.pipe';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements AfterViewInit {
 
   keyIn: any;
 
-  constructor (private elementRef: ElementRef, private logicService: LogicService) {}
+  constructor (private elementRef: ElementRef, private logicService: LogicService) {  }
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.fontSize = '17px';
@@ -67,16 +68,6 @@ export class AppComponent implements AfterViewInit {
     return (eventValue === 'Enter') ? '=' : eventValue;
   }
 
-  //Add commas when number grows to thousand and beyond
-  toEasyReadFormat(number: number): string {
-    return (Math.abs(number) >= 1e+12 || (Math.abs(number) < 1e-12 && number !== 0)) ? number.toExponential(9) : number.toLocaleString(undefined, {maximumFractionDigits: 12});
-  }
-
-  //Convert easy read format number to number format number
-  toNumberFormat(numberString: string): number {
-    return Number.parseFloat(numberString.replace(/,/g , ''));
-  }
-
   //Clear all when user clicks AC
   allClear() {
     this.logicService.allClear();
@@ -101,25 +92,21 @@ export class AppComponent implements AfterViewInit {
   //Update logic service's currentNum and reformat currentDisplayNum
   updateCurrentNum() {
     this.logicService.setCurrentNum(this.currentDisplayNum);
-    if (this.currentDisplayNum.indexOf('.') === -1) this.currentDisplayNum = this.toEasyReadFormat(this.logicService.getCurrentNum());456
   }
 
   //Get number input
   getInput(event: any) {
     let eventValue: string = this.getEventValue(event);
-
-    let numberString: string = this.currentDisplayNum.replace('-', '').replace(/,/g , '');
-    let beforeDecimal: string = numberString.split('.')[0];
-    let afterDecimal: string = (numberString.split('.')[1]) ? numberString.split('.')[1] : ' ';
+    let numberDigits: string = this.currentDisplayNum.replace('-', '').replace('.', '');
     
     if (this.isLastInputOperator() || this.lastInput === '' || this.currentDisplayNum === '0') {
       this.currentDisplayNum = eventValue;
       this.lastInput = eventValue;
-    } else if (beforeDecimal.length + afterDecimal.length <= 12) {
+    } else if (numberDigits.length < 12) {
       this.currentDisplayNum += eventValue;
       this.lastInput = eventValue;
     }
-
+    
     this.updateCurrentNum();
   }
 
@@ -135,7 +122,12 @@ export class AppComponent implements AfterViewInit {
 
   //Toggle positive/negative number
   toggleSign() {
-    this.currentDisplayNum = this.toEasyReadFormat(this.logicService.toggleSign(this.currentDisplayNum));
+    let number: number = Number.parseFloat(this.currentDisplayNum);
+    if (number > 0) {
+      this.currentDisplayNum = '-' + this.currentDisplayNum;
+    } else {
+      this.currentDisplayNum = this.currentDisplayNum.replace('-', '');
+    }
     this.lastInput = 'T';
   }
 
@@ -144,14 +136,14 @@ export class AppComponent implements AfterViewInit {
     let eventValue: string = this.getEventValue(event);
 
     this.logOperationBegin();
-    this.currentDisplayNum = this.toEasyReadFormat(this.logicService.calculate(this.isLastInputOperator()));
+    this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator()).toString();
     this.lastInput = this.logicService.finishOperation(eventValue);
     this.logOperationEnd();
   }
 
   //Do =
   getResult() {
-    this.currentDisplayNum = this.toEasyReadFormat(this.logicService.calculate(this.isLastInputOperator()));
+    this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator()).toString();
     this.lastInput = this.logicService.finishAll();
     this.log = '';
   }
@@ -164,8 +156,10 @@ export class AppComponent implements AfterViewInit {
   //Begin the log on top of calculator
   logOperationBegin() {
     if (!this.isLastInputOperator() || this.lastInput === '=') {
-      let number: number = this.toNumberFormat(this.currentDisplayNum);
-      this.log += (number >= 0) ? this.currentDisplayNum + ' ' : '('+this.currentDisplayNum+')' + ' ';
+      let number: number = Number.parseFloat(this.currentDisplayNum);
+      let easyReadPipeFilter = new EasyReadPipe();
+      let numberEasyRead: string = easyReadPipeFilter.transform(this.currentDisplayNum);
+      this.log += (number >= 0) ? numberEasyRead + ' ' : '('+numberEasyRead+')' + ' ';
     } else {
       this.log = this.log.slice(0, -2);
     }

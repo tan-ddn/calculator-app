@@ -12,33 +12,6 @@ export class LogicService {
 
   constructor() { }
 
-  /*countDecimals(a: number): number {
-    if (Math.floor(a) === a) return 0;
-    return a.toString().split('.')[1].length || 0;
-  }
-
-  getLongestDecimals(a:number, b: number): number {
-    return (this.countDecimals(a) > this.countDecimals(b)) ? this.countDecimals(a) : this.countDecimals(b);
-  }
-
-  add(a: number, b: number): number {
-    //return Number.parseFloat((a + b).toFixed(this.getLongestDecimals(a, b)));
-    return a + b;  
-  }
-  
-  substract(a: number, b: number): number {
-    //return Number.parseFloat((a - b).toFixed(this.getLongestDecimals(a, b)));
-    return a - b;  
-  }
-
-  multiply(a: number, b: number) {
-    return a * b;  
-  }
-
-  divide(a: number, b: number) {
-    return a / b;  
-  }*/
-
   allClear() {
     this.currentNum = 0;
     this.operation = '';
@@ -46,20 +19,20 @@ export class LogicService {
   }
 
   setCurrentNum(val: string) {
-    this.currentNum = Number.parseFloat(val.replace(/,/g , ''));
+    this.currentNum = Number.parseFloat(val);
   }
 
   getCurrentNum(): number {
     return this.currentNum;
   }
 
-  toggleSign(val: string): number {
-    this.currentNum = Number.parseFloat(val.replace(/,/g , ''));
+  /*toggleSign(val: string): number {
+    this.currentNum = Number.parseFloat(val);
     if (this.currentNum !== 0) {
       this.currentNum *= -1;
     }
     return this.currentNum;
-  }
+  }*/
 
   calculate(isLastInputOperator: boolean): number {
     if (!isLastInputOperator) {
@@ -81,7 +54,6 @@ export class LogicService {
         default:
           this.result = this.currentNum;
       }
-      //this.result = Number.parseFloat(this.result.toPrecision(12));
       //console.log(this.operation + ' ' + this.currentNum);
       this.currentNum = 0;
       //console.log(this.result.toString() + ' | ' + this.result);
@@ -90,7 +62,6 @@ export class LogicService {
   }
 
   finishOperation(val: string): string {
-    //let lastOperation = this.operation;
     this.operation = val;
     return this.operation;
   }
