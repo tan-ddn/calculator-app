@@ -575,13 +575,13 @@ if(false) {}
 
 /***/ 2:
 /*!**********************************************************************************!*\
-  !*** multi ./src/styles.css ./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
+  !*** multi ./node_modules/bootstrap/dist/css/bootstrap.min.css ./src/styles.css ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Work\calculator-app\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! D:\Work\calculator-app\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! D:\Work\calculator-app\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! D:\Work\calculator-app\src\styles.css */"./src/styles.css");
 
 
 /***/ })
