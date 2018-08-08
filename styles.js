@@ -48,7 +48,7 @@ module.exports = "/*!\n * Bootstrap v4.1.1 (https://getbootstrap.com/)\n * Copyr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\r\nbody {\r\n    font-size: 17px;\r\n    background: #eee;\r\n}\r\n/*input, button {\r\n    font-size: 17px;\r\n}*/"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\nbody {\r\n    font-size: 17px;\r\n    background: #eee;\r\n}\r\ninput, button {\r\n    font-size: 1em;\r\n    touch-action: manipulation;\r\n}"
 
 /***/ }),
 
