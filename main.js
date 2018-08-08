@@ -41,7 +41,7 @@ module.exports = "h1.display-4 {\r\n    font-size: 2rem;\r\n}\r\n\r\n.calc-wrapp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-root-wrap\">\r\n    <div class=\"container\">\r\n      <br/>\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <h1 class=\"display-4 text-center\">Welcome to<br/>{{ title }}!</h1>\r\n        </div>\r\n      </div>\r\n      <!--br/>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n          <input type=\"number\" [(ngModel)]=\"num1\" placeholder=\"Enter Number 1\" class=\"form-control\" />\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <input type=\"number\" [(ngModel)]=\"num2\" placeholder=\"Enter Number 2\" class=\"form-control\" />\r\n        </div>\r\n      </div>\r\n      <br/>\r\n      <div class=\"row text-center\">\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='add()'>Add</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='substract()'>Substract</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='multiply()'>Multiply</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='divide()'>Divide</button>\r\n        </div>\r\n      </div>\r\n      <br/>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-5 col-md-offset-4\">\r\n          <h2>Result = {{ result }}</h2>\r\n        </div>\r\n      </div-->\r\n      <div class=\"row my-3 justify-content-center\">\r\n        <div class=\"col-lg-5 col-md-7 col-sm-12\">\r\n          <div class=\"calc-wrapper shadow p-3\">\r\n            <div class=\"row\">\r\n              <div class=\"col-12\"><div id=\"calc-screen\" class=\"form-group calc-screen \">\r\n                <div class=\"calc-log\">\r\n                  <small>{{log}}</small>\r\n                </div>\r\n                <!--input type=\"text\" [(ngModel)]='currentDisplayNum' class=\"calc-screen-input form-control text-right border-0\"/-->\r\n                <div class=\"calc-screen-input form-control text-right border-0\">\r\n                  <div>{{currentDisplayNum | easyRead}}</div>\r\n                  <!--input type=\"text\" (keydown)=\"onKey($event)\" class=\"calc-key-input form-control text-right border-0\" /-->\r\n                </div>\r\n              </div></div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-12\">\r\n                <div class=\"btn-toolbar\" role=\"toolbar\">\r\n                  <div class=\"btn-group calc-operation-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <button (click)='toggleSign()' class=\"btn btn-primary btn-lg \"><small>+/-</small></button>\r\n                    <button (click)='clearInput()' class=\"btn btn-warning btn-lg\">C</button>\r\n                    <button (click)='allClear()' class=\"btn btn-danger btn-lg \">AC</button>\r\n                  </div>\r\n                  <div class=\"btn-group calc-operation-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg \" value=\"+\">+</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg\" value=\"-\">-</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg\" value=\"*\">X</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg \" value=\"/\">/</button>\r\n                  </div>\r\n                  <div class=\"btn-group calc-numbers-group flex-wrap flex-row-reverse text-center\" role=\"group\">\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"9\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"8\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"7\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"6\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"5\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"4\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"3\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"2\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"1\" />\r\n                  </div>\r\n                  <div class=\"btn-group calc-numbers-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"0\" />\r\n                    <input type=\"button\" (click)='insertDot()' class=\"btn btn-secondary btn-lg\" value=\".\" />\r\n                    <input type=\"button\" (click)='getResult()' class=\"btn btn-info btn-lg \" value=\"=\" />\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>"
+module.exports = "<div class=\"app-root-wrap\">\r\n    <div class=\"container\">\r\n      <br/>\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <h1 class=\"display-4 text-center\">Welcome to<br/>{{ title }}!</h1>\r\n        </div>\r\n      </div>\r\n      <!--br/>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n          <input type=\"number\" [(ngModel)]=\"num1\" placeholder=\"Enter Number 1\" class=\"form-control\" />\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <input type=\"number\" [(ngModel)]=\"num2\" placeholder=\"Enter Number 2\" class=\"form-control\" />\r\n        </div>\r\n      </div>\r\n      <br/>\r\n      <div class=\"row text-center\">\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='add()'>Add</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='substract()'>Substract</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='multiply()'>Multiply</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n          <button class=\"btn btn-secondary\" (click)='divide()'>Divide</button>\r\n        </div>\r\n      </div>\r\n      <br/>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-5 col-md-offset-4\">\r\n          <h2>Result = {{ result }}</h2>\r\n        </div>\r\n      </div-->\r\n      <div class=\"row my-3 justify-content-center\">\r\n        <div class=\"col-lg-5 col-md-7 col-sm-12\">\r\n          <div class=\"calc-wrapper shadow p-3\">\r\n            <div class=\"row\">\r\n              <div class=\"col-12\"><div id=\"calc-screen\" class=\"form-group calc-screen \">\r\n                <div class=\"calc-log\">\r\n                  <small>{{log}}</small>\r\n                </div>\r\n                <!--input type=\"text\" [(ngModel)]='currentDisplayNum' class=\"calc-screen-input form-control text-right border-0\"/-->\r\n                <div class=\"calc-screen-input form-control text-right border-0\">\r\n                  <div>{{currentDisplayNum | easyRead:isLastInputOperator()}}</div>\r\n                  <!--input type=\"text\" (keydown)=\"onKey($event)\" class=\"calc-key-input form-control text-right border-0\" /-->\r\n                </div>\r\n              </div></div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-12\">\r\n                <div class=\"btn-toolbar\" role=\"toolbar\">\r\n                  <div class=\"btn-group calc-operation-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <button (click)='toggleSign()' class=\"btn btn-primary btn-lg \"><small>+/-</small></button>\r\n                    <button (click)='clearInput()' class=\"btn btn-warning btn-lg\">C</button>\r\n                    <button (click)='allClear()' class=\"btn btn-danger btn-lg \">AC</button>\r\n                  </div>\r\n                  <div class=\"btn-group calc-operation-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg \" value=\"+\">+</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg\" value=\"-\">-</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg\" value=\"*\">X</button>\r\n                    <button (click)='doOperation($event)' class=\"btn btn-info btn-lg \" value=\"/\">/</button>\r\n                  </div>\r\n                  <div class=\"btn-group calc-numbers-group flex-wrap flex-row-reverse text-center\" role=\"group\">\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"9\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"8\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"7\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"6\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"5\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"4\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"3\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg\" value=\"2\" />\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"1\" />\r\n                  </div>\r\n                  <div class=\"btn-group calc-numbers-group flex-wrap flex-grow-1 text-center\" role=\"group\">\r\n                    <input type=\"button\" (click)='getInput($event)' class=\"btn btn-secondary btn-lg \" value=\"0\" />\r\n                    <input type=\"button\" (click)='insertDot()' class=\"btn btn-secondary btn-lg\" value=\".\" />\r\n                    <input type=\"button\" (click)='getResult()' class=\"btn btn-info btn-lg \" value=\"=\" />\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>"
 
 /***/ }),
 
@@ -80,15 +80,11 @@ var AppComponent = /** @class */ (function () {
         this.lastInput = '';
         this.log = '';
     }
-    AppComponent.prototype.ngAfterViewInit = function () {
-        //this.elementRef.nativeElement.ownerDocument.body.style.fontSize = '17px';
-        //this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#eee';
-    };
     //Listen to keyboard event
     AppComponent.prototype.handleKeyboardEvent = function (event) {
         //console.log(event);
         this.keyIn = event.key;
-        if (isNaN(this.keyIn) || this.keyIn === ' ') {
+        if (isNaN(this.keyIn) || this.keyIn === ' ' || this.keyIn === 'Enter') {
             switch (this.keyIn) {
                 case '+':
                 case '-':
@@ -97,8 +93,9 @@ var AppComponent = /** @class */ (function () {
                     this.doOperation(event);
                     break;
                 case ' ':
-                case '=':
                 case 'Enter':
+                    event.preventDefault();
+                case '=':
                     this.getResult();
                     break;
                 case '.':
@@ -125,7 +122,8 @@ var AppComponent = /** @class */ (function () {
         else {
             eventValue = event.target.value;
         }
-        return (eventValue === 'Enter') ? '=' : eventValue;
+        //return (eventValue === 'Enter') ? '=' : eventValue;
+        return eventValue;
     };
     //Clear all when user clicks AC
     AppComponent.prototype.allClear = function () {
@@ -181,6 +179,7 @@ var AppComponent = /** @class */ (function () {
             this.currentDisplayNum = this.currentDisplayNum.replace('-', '');
         }
         this.lastInput = 'T';
+        this.updateCurrentNum();
     };
     //Do + - * /
     AppComponent.prototype.doOperation = function (event) {
@@ -193,6 +192,7 @@ var AppComponent = /** @class */ (function () {
     //Do =
     AppComponent.prototype.getResult = function () {
         this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator()).toString();
+        //console.log(this.currentDisplayNum);
         this.lastInput = this.logicService.finishAll();
         this.log = '';
     };
@@ -205,7 +205,7 @@ var AppComponent = /** @class */ (function () {
         if (!this.isLastInputOperator() || this.lastInput === '=') {
             var number = Number.parseFloat(this.currentDisplayNum);
             var easyReadPipeFilter = new _easyread_pipe__WEBPACK_IMPORTED_MODULE_2__["EasyReadPipe"]();
-            var numberEasyRead = easyReadPipeFilter.transform(this.currentDisplayNum);
+            var numberEasyRead = easyReadPipeFilter.transform(this.currentDisplayNum, this.isLastInputOperator());
             this.log += (number >= 0) ? numberEasyRead + ' ' : '(' + numberEasyRead + ')' + ' ';
         }
         else {
@@ -308,7 +308,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var EasyReadPipe = /** @class */ (function () {
     function EasyReadPipe() {
     }
-    EasyReadPipe.prototype.transform = function (numberString) {
+    EasyReadPipe.prototype.transform = function (numberString, isLastInputOperatator) {
         var dotPos = numberString.indexOf('.');
         var number = Number.parseFloat(numberString);
         if (Math.abs(number) >= 1e+12 || (Math.abs(number) < 1e-11 && number !== 0)) {
@@ -327,6 +327,11 @@ var EasyReadPipe = /** @class */ (function () {
             return number.toLocaleString();
         }
         else {
+            //if numberString is a result of an operator, fix the floating points issue,
+            //else do nothing
+            if (isLastInputOperatator) {
+                numberString = number.toLocaleString();
+            }
             var fractionalPart = numberString.slice(dotPos + 1);
             var fracDigits = (fractionalPart.length < 11) ? fractionalPart.length : 11;
             var dot = (fracDigits === 0) ? '.' : '';
