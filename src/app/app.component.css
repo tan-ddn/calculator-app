@@ -51,11 +51,11 @@ h1.display-4 {
 }
 .calc-operation-group .btn {
     flex-grow: 1;
-    width: calc(25% - 2px);
-    margin: 1px;
+    width: calc(25% - 4px);
+    margin: 2px;
 }
 .calc-numbers-group .btn {
     flex-grow: 1;
-    width: calc(33.333% - 2px);
-    margin: 1px;
+    width: calc(33.333% - 4px);
+    margin: 2px;
 }
