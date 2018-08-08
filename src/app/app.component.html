@@ -46,7 +46,7 @@
                 </div>
                 <!--input type="text" [(ngModel)]='currentDisplayNum' class="calc-screen-input form-control text-right border-0"/-->
                 <div class="calc-screen-input form-control text-right border-0">
-                  <div>{{currentDisplayNum | easyRead}}</div>
+                  <div>{{currentDisplayNum | easyRead:isLastInputOperator()}}</div>
                   <!--input type="text" (keydown)="onKey($event)" class="calc-key-input form-control text-right border-0" /-->
                 </div>
               </div></div>

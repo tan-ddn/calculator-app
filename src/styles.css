@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-size: 16px;
+    background: #eee;
+    touch-action: manipulation;
+}
 input, button {
-    font-size: 17px;
+    font-size: 1em;
+    touch-action: manipulation;
 }

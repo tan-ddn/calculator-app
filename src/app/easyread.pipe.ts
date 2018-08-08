@@ -4,7 +4,7 @@ import { Pipe, PipeTransform} from "@angular/core";
     name: 'easyRead'
 })
 export class EasyReadPipe implements PipeTransform {
-    transform(numberString: string) {
+    transform(numberString: string, isLastInputOperatator: Boolean) {
         let dotPos: number = numberString.indexOf('.');
         let number: number = Number.parseFloat(numberString);
         if (Math.abs(number) >= 1e+12 || (Math.abs(number) < 1e-11 && number !== 0)) {
@@ -20,6 +20,11 @@ export class EasyReadPipe implements PipeTransform {
         } else if (dotPos === -1) {
             return number.toLocaleString();
         } else {
+            //if numberString is a result of an operator, fix the floating points issue,
+            //else do nothing
+            if (isLastInputOperatator) {
+                numberString = number.toLocaleString();
+            }
             let fractionalPart: string = numberString.slice(dotPos + 1);
             let fracDigits: number = (fractionalPart.length < 11) ? fractionalPart.length : 11;
             let dot: string = (fracDigits === 0) ? '.' : '';

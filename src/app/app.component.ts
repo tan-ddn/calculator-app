@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { LogicService } from './logic.service';
 import { EasyReadPipe } from './easyread.pipe';
 
@@ -7,7 +7,7 @@ import { EasyReadPipe } from './easyread.pipe';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   title = 'Calculator App';
 
   readonly operators: string[] = ['+', '-', '*', '/', '='];
@@ -19,17 +19,12 @@ export class AppComponent implements AfterViewInit {
 
   constructor (private elementRef: ElementRef, private logicService: LogicService) {  }
 
-  ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.fontSize = '17px';
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#eee';
-  }
-
   //Listen to keyboard event
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     //console.log(event);
     this.keyIn = event.key; 
-    if (isNaN(this.keyIn) || this.keyIn === ' ') {
+    if (isNaN(this.keyIn) || this.keyIn === ' ' || this.keyIn === 'Enter') {
       switch (this.keyIn) {
         case '+':
         case '-':
@@ -38,8 +33,9 @@ export class AppComponent implements AfterViewInit {
           this.doOperation(event);
           break;
         case ' ':
-        case '=':
         case 'Enter':
+          event.preventDefault();
+        case '=':
           this.getResult();
           break;
         case '.':
@@ -65,7 +61,8 @@ export class AppComponent implements AfterViewInit {
     } else {
       eventValue = event.target.value;
     }
-    return (eventValue === 'Enter') ? '=' : eventValue;
+    //return (eventValue === 'Enter') ? '=' : eventValue;
+    return eventValue;
   }
 
   //Clear all when user clicks AC
@@ -129,6 +126,7 @@ export class AppComponent implements AfterViewInit {
       this.currentDisplayNum = this.currentDisplayNum.replace('-', '');
     }
     this.lastInput = 'T';
+    this.updateCurrentNum();
   }
 
   //Do + - * /
@@ -144,6 +142,7 @@ export class AppComponent implements AfterViewInit {
   //Do =
   getResult() {
     this.currentDisplayNum = this.logicService.calculate(this.isLastInputOperator()).toString();
+    //console.log(this.currentDisplayNum);
     this.lastInput = this.logicService.finishAll();
     this.log = '';
   }
@@ -158,7 +157,7 @@ export class AppComponent implements AfterViewInit {
     if (!this.isLastInputOperator() || this.lastInput === '=') {
       let number: number = Number.parseFloat(this.currentDisplayNum);
       let easyReadPipeFilter = new EasyReadPipe();
-      let numberEasyRead: string = easyReadPipeFilter.transform(this.currentDisplayNum);
+      let numberEasyRead: string = easyReadPipeFilter.transform(this.currentDisplayNum, this.isLastInputOperator());
       this.log += (number >= 0) ? numberEasyRead + ' ' : '('+numberEasyRead+')' + ' ';
     } else {
       this.log = this.log.slice(0, -2);
